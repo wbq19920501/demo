@@ -74,5 +74,13 @@ public class OneActivity extends Activity{
                 }
             }
         });
+        Button yuanquan = (Button) findViewById(R.id.yuanquan);
+        yuanquan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,YuanActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

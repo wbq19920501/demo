@@ -22,4 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="动画1"/>
+    <Button
+        android:id="@+id/donghua2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="属性动画"/>
 </LinearLayout>

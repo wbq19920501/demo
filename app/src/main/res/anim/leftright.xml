@@ -4,10 +4,7 @@
     android:fillAfter="true">
     <translate
         android:fromXDelta="0"
-        android:toXDelta="100"
-        android:fromYDelta="0"
-        android:toYDelta="-37"
-        
+        android:toXDelta="400"
         android:duration="3000"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
         ></translate>

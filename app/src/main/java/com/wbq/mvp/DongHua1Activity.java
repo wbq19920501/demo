@@ -22,19 +22,31 @@ public class DongHua1Activity extends Activity{
         final TextView ceshi1 = (TextView) findViewById(R.id.ceshi3);
         final TextView ceshi2 = (TextView) findViewById(R.id.ceshi2);
         final TextView ceshi3 = (TextView) findViewById(R.id.ceshi3);
-        final Animation animation = AnimationUtils.loadAnimation(DongHua1Activity.this, R.anim.donghua2);
-        final Animation animation2 = AnimationUtils.loadAnimation(DongHua1Activity.this, R.anim.lefttop);
         final Animation animation3 = AnimationUtils.loadAnimation(DongHua1Activity.this, R.anim.donghua2);
+        final Animation animation2 = AnimationUtils.loadAnimation(DongHua1Activity.this, R.anim.lefttop);
+        final Animation animation1 = AnimationUtils.loadAnimation(DongHua1Activity.this, R.anim.leftright);
         ceshi3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ceshi3.startAnimation(animation);
+                ceshi3.startAnimation(animation3);
+                ceshi1.startAnimation(animation1);
+                ceshi2.startAnimation(animation2);
             }
         });
         ceshi2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ceshi2.startAnimation(animation2);
+                ceshi1.startAnimation(animation1);
+                ceshi3.startAnimation(animation3);
+            }
+        });
+        ceshi1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ceshi1.startAnimation(animation1);
+//                ceshi3.startAnimation(animation3);
+//                ceshi2.startAnimation(animation2);
             }
         });
     }

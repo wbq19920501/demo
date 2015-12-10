@@ -19,6 +19,7 @@
         <activity android:name=".OneActivity"/>
         <activity android:name=".YuanActivity"/>
         <activity android:name=".DongHua1Activity"/>
+        <activity android:name=".DongHua2Activity"/>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@
             android:layout_weight="1"
             android:text="UserName:"/>
         <EditText
+            android:text="wbq"
             android:id="@+id/id_et_username"
             android:layout_marginLeft="5dp"
             android:layout_width="0dp"
@@ -31,6 +32,7 @@
             android:layout_weight="1"
             android:text="Password:"/>
         <EditText
+            android:text="123"
             android:id="@+id/id_et_password"
             android:layout_marginLeft="5dp"
             android:layout_width="0dp"

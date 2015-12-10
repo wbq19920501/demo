@@ -47,6 +47,14 @@ activity#com.wbq.mvp.OneActivity
 ADDED from AndroidManifest.xml:19:9
 	android:name
 		ADDED from AndroidManifest.xml:19:19
+activity#com.wbq.mvp.YuanActivity
+ADDED from AndroidManifest.xml:20:9
+	android:name
+		ADDED from AndroidManifest.xml:20:19
+activity#com.wbq.mvp.DongHua1Activity
+ADDED from AndroidManifest.xml:21:9
+	android:name
+		ADDED from AndroidManifest.xml:21:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 	android:targetSdkVersion

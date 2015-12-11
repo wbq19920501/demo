@@ -20,6 +20,7 @@
         <activity android:name=".YuanActivity"/>
         <activity android:name=".DongHua1Activity"/>
         <activity android:name=".DongHua2Activity"/>
+        <activity android:name=".DongHua3Activity"/>
     </application>
 
 </manifest>

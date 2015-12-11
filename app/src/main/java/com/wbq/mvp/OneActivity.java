@@ -98,5 +98,13 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
+        Button donghua3 = (Button) findViewById(R.id.donghua3);
+        donghua3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,DongHua3Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

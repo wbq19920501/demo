@@ -59,6 +59,10 @@ activity#com.wbq.mvp.DongHua2Activity
 ADDED from AndroidManifest.xml:22:9
 	android:name
 		ADDED from AndroidManifest.xml:22:19
+activity#com.wbq.mvp.DongHua3Activity
+ADDED from AndroidManifest.xml:23:9
+	android:name
+		ADDED from AndroidManifest.xml:23:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 	android:targetSdkVersion

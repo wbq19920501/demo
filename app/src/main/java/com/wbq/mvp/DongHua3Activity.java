@@ -6,8 +6,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -23,106 +26,138 @@ public class DongHua3Activity extends Activity{
             ,animrightleftleft2,animrightleftleft3,animrightleftleft4;
     int changleft = 1;
     int changright = 1;
+    int xleft,x,xright,y,downy;
+    ImageView imganim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.donghua1);
+        setContentView(R.layout.donghua2);
         ceshi1 = (TextView) findViewById(R.id.ceshi1);
         ceshi2 = (TextView) findViewById(R.id.ceshi2);
         ceshi3 = (TextView) findViewById(R.id.ceshi3);
+        imganim = (ImageView) findViewById(R.id.imganim);
         ceshi1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseanimright(changright);
-                clickanimright();
-//                chooseanimleft(changleft);
-//                clickanimleft();
+//                chooseanimright(changright);
+//                clickanimright();
+                imganimleft();
+                chooseanimleft(changleft);
+                clickanimleft();
             }
         });
         ceshi2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseanimright(changright);
-                clickanimright();
-//                chooseanimleft(changleft);
-//                clickanimleft();
+//                chooseanimright(changright);
+//                clickanimright();
+                imganimleft();
+                chooseanimleft(changleft);
+                clickanimleft();
             }
         });
         ceshi3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseanimright(changright);
-                clickanimright();
-//                chooseanimleft(changleft);
-//                clickanimleft();
+//                chooseanimright(changright);
+//                clickanimright();
+                imganimleft();
+                chooseanimleft(changleft);
+                clickanimleft();
             }
         });
     }
+
+    private void imganimleft() {
+        int x1 = imganim.getLeft();
+        int imgw = imganim.getRight()-x1;
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int x2 = dm.widthPixels;
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(imganim,"X",x1,-imgw);
+        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(imganim,"X",x2,x1);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(objectAnimator2).after(objectAnimator1);
+        animatorSet.setDuration(350);
+        animatorSet.start();
+    }
+
     private void chooseanimleft(int i) {
+        changxy();
         switch (i){
             case 1:
-                animrightleftleft1 = ObjectAnimator.ofFloat(ceshi1,"X",100,100);
-                animrightleftleft2 = ObjectAnimator.ofFloat(ceshi1, "Y", 0, -40);
-                animrightleftleft3 = ObjectAnimator.ofFloat(ceshi1,"X",500,500);
-                animrightleftleft4 = ObjectAnimator.ofFloat(ceshi1, "Y", -40, 0);
-                animdownrightleft1 = ObjectAnimator.ofFloat(ceshi2,"X",300,100);
-                animdownrightleft2 = ObjectAnimator.ofFloat(ceshi2, "Y", 40, 0);
-                animleftdownleft1 = ObjectAnimator.ofFloat(ceshi3,"X",500,300);
-                animleftdownleft2 = ObjectAnimator.ofFloat(ceshi3,"Y",0,40);
+                animrightleftleft1 = ObjectAnimator.ofFloat(ceshi1,"X",xleft,xleft);
+                animrightleftleft2 = ObjectAnimator.ofFloat(ceshi1, "Y", y, -downy);
+                animrightleftleft3 = ObjectAnimator.ofFloat(ceshi1,"X",xright,xright);
+                animrightleftleft4 = ObjectAnimator.ofFloat(ceshi1, "Y", -downy, y);
+                animdownrightleft1 = ObjectAnimator.ofFloat(ceshi2,"X",x,xleft);
+                animdownrightleft2 = ObjectAnimator.ofFloat(ceshi2, "Y", downy, y);
+                animleftdownleft1 = ObjectAnimator.ofFloat(ceshi3,"X",xright,x);
+                animleftdownleft2 = ObjectAnimator.ofFloat(ceshi3,"Y",y,downy);
                 break;
             case 2:
-                animrightleftleft1 = ObjectAnimator.ofFloat(ceshi2,"X",100,100);
-                animrightleftleft2 = ObjectAnimator.ofFloat(ceshi2, "Y", 0, -40);
-                animrightleftleft3 = ObjectAnimator.ofFloat(ceshi2,"X",500,500);
-                animrightleftleft4 = ObjectAnimator.ofFloat(ceshi2, "Y", -40, 0);
-                animdownrightleft1 = ObjectAnimator.ofFloat(ceshi3,"X",300,100);
-                animdownrightleft2 = ObjectAnimator.ofFloat(ceshi3, "Y", 40, 0);
-                animleftdownleft1 = ObjectAnimator.ofFloat(ceshi1,"X",500,300);
-                animleftdownleft2 = ObjectAnimator.ofFloat(ceshi1,"Y",0,40);
+                animrightleftleft1 = ObjectAnimator.ofFloat(ceshi2,"X",xleft,xleft);
+                animrightleftleft2 = ObjectAnimator.ofFloat(ceshi2, "Y", y, -downy);
+                animrightleftleft3 = ObjectAnimator.ofFloat(ceshi2,"X",xright,xright);
+                animrightleftleft4 = ObjectAnimator.ofFloat(ceshi2, "Y", -downy, y);
+                animdownrightleft1 = ObjectAnimator.ofFloat(ceshi3,"X",x,xleft);
+                animdownrightleft2 = ObjectAnimator.ofFloat(ceshi3, "Y", downy, y);
+                animleftdownleft1 = ObjectAnimator.ofFloat(ceshi1,"X",xright,x);
+                animleftdownleft2 = ObjectAnimator.ofFloat(ceshi1,"Y",y,downy);
                 break;
             case 3:
-                animrightleftleft1 = ObjectAnimator.ofFloat(ceshi3,"X",100,100);
-                animrightleftleft2 = ObjectAnimator.ofFloat(ceshi3, "Y", 0, -40);
-                animrightleftleft3 = ObjectAnimator.ofFloat(ceshi3,"X",500,500);
-                animrightleftleft4 = ObjectAnimator.ofFloat(ceshi3, "Y", -40, 0);
-                animdownrightleft1 = ObjectAnimator.ofFloat(ceshi1,"X",300,100);
-                animdownrightleft2 = ObjectAnimator.ofFloat(ceshi1, "Y", 40, 0);
-                animleftdownleft1 = ObjectAnimator.ofFloat(ceshi2,"X",500,300);
-                animleftdownleft2 = ObjectAnimator.ofFloat(ceshi2,"Y",0,40);
+                animrightleftleft1 = ObjectAnimator.ofFloat(ceshi3,"X",xleft,xleft);
+                animrightleftleft2 = ObjectAnimator.ofFloat(ceshi3, "Y", y, -downy);
+                animrightleftleft3 = ObjectAnimator.ofFloat(ceshi3,"X",xright,xright);
+                animrightleftleft4 = ObjectAnimator.ofFloat(ceshi3, "Y", -downy, y);
+                animdownrightleft1 = ObjectAnimator.ofFloat(ceshi1,"X",x,xleft);
+                animdownrightleft2 = ObjectAnimator.ofFloat(ceshi1, "Y", downy, y);
+                animleftdownleft1 = ObjectAnimator.ofFloat(ceshi2,"X",xright,x);
+                animleftdownleft2 = ObjectAnimator.ofFloat(ceshi2,"Y",y,downy);
                 break;
         }
     }
+
+    private void changxy() {
+        xleft = ceshi1.getLeft();
+        x = ceshi2.getLeft();
+        xright = ceshi3.getLeft();
+        y = ceshi1.getTop();
+        downy = ceshi2.getTop();
+    }
+
     private void chooseanimright(int i) {
+        changxy();
         switch (i){
             case 1:
-                animleftdown1 = ObjectAnimator.ofFloat(ceshi1,"X",100,300);
-                animleftdown2 = ObjectAnimator.ofFloat(ceshi1,"Y",0,40);
-                animdownright1 = ObjectAnimator.ofFloat(ceshi2,"X",300,500);
-                animdownright2 = ObjectAnimator.ofFloat(ceshi2, "Y", 40, 0);
-                animrightleft1 = ObjectAnimator.ofFloat(ceshi3,"X",500,500);
-                animrightleft2 = ObjectAnimator.ofFloat(ceshi3, "Y", 0, -40);
-                animrightleft3 = ObjectAnimator.ofFloat(ceshi3,"X",100,100);
-                animrightleft4 = ObjectAnimator.ofFloat(ceshi3, "Y", -40, 0);
+                animleftdown1 = ObjectAnimator.ofFloat(ceshi1,"X",xleft,x);
+                animleftdown2 = ObjectAnimator.ofFloat(ceshi1,"Y",y,downy);
+                animdownright1 = ObjectAnimator.ofFloat(ceshi2,"X",x,xright);
+                animdownright2 = ObjectAnimator.ofFloat(ceshi2, "Y", downy, y);
+                animrightleft1 = ObjectAnimator.ofFloat(ceshi3,"X",xright,xright);
+                animrightleft2 = ObjectAnimator.ofFloat(ceshi3, "Y", y, -downy);
+                animrightleft3 = ObjectAnimator.ofFloat(ceshi3,"X",xleft,xleft);
+                animrightleft4 = ObjectAnimator.ofFloat(ceshi3, "Y", -downy, y);
                 break;
             case 2:
-                animleftdown1 = ObjectAnimator.ofFloat(ceshi3,"X",100,300);
-                animleftdown2 = ObjectAnimator.ofFloat(ceshi3,"Y",0,40);
-                animdownright1 = ObjectAnimator.ofFloat(ceshi1,"X",300,500);
-                animdownright2 = ObjectAnimator.ofFloat(ceshi1, "Y", 40, 0);
-                animrightleft1 = ObjectAnimator.ofFloat(ceshi2,"X",500,500);
-                animrightleft2 = ObjectAnimator.ofFloat(ceshi2, "Y", 0, -40);
-                animrightleft3 = ObjectAnimator.ofFloat(ceshi2,"X",100,100);
-                animrightleft4 = ObjectAnimator.ofFloat(ceshi2, "Y", -40, 0);
+                animleftdown1 = ObjectAnimator.ofFloat(ceshi3,"X",xleft,x);
+                animleftdown2 = ObjectAnimator.ofFloat(ceshi3,"Y",y,downy);
+                animdownright1 = ObjectAnimator.ofFloat(ceshi1,"X",x,xright);
+                animdownright2 = ObjectAnimator.ofFloat(ceshi1, "Y", downy, y);
+                animrightleft1 = ObjectAnimator.ofFloat(ceshi2,"X",xright,xright);
+                animrightleft2 = ObjectAnimator.ofFloat(ceshi2, "Y", y, -downy);
+                animrightleft3 = ObjectAnimator.ofFloat(ceshi2,"X",xleft,xleft);
+                animrightleft4 = ObjectAnimator.ofFloat(ceshi2, "Y", -downy, y);
                 break;
             case 3:
-                animleftdown1 = ObjectAnimator.ofFloat(ceshi2,"X",100,300);
-                animleftdown2 = ObjectAnimator.ofFloat(ceshi2,"Y",0,40);
-                animdownright1 = ObjectAnimator.ofFloat(ceshi3,"X",300,500);
-                animdownright2 = ObjectAnimator.ofFloat(ceshi3, "Y", 40, 0);
-                animrightleft1 = ObjectAnimator.ofFloat(ceshi1,"X",500,500);
-                animrightleft2 = ObjectAnimator.ofFloat(ceshi1, "Y", 0, -40);
-                animrightleft3 = ObjectAnimator.ofFloat(ceshi1,"X",100,100);
-                animrightleft4 = ObjectAnimator.ofFloat(ceshi1, "Y", -40, 0);
+                animleftdown1 = ObjectAnimator.ofFloat(ceshi2,"X",xleft,x);
+                animleftdown2 = ObjectAnimator.ofFloat(ceshi2,"Y",y,downy);
+                animdownright1 = ObjectAnimator.ofFloat(ceshi3,"X",x,xright);
+                animdownright2 = ObjectAnimator.ofFloat(ceshi3, "Y", downy, y);
+                animrightleft1 = ObjectAnimator.ofFloat(ceshi1,"X",xright,xright);
+                animrightleft2 = ObjectAnimator.ofFloat(ceshi1, "Y", y, -downy);
+                animrightleft3 = ObjectAnimator.ofFloat(ceshi1,"X",xleft,xleft);
+                animrightleft4 = ObjectAnimator.ofFloat(ceshi1, "Y", -downy, y);
                 break;
         }
     }
@@ -130,15 +165,15 @@ public class DongHua3Activity extends Activity{
         animatorset1 = new AnimatorSet();
         animatorset2 = new AnimatorSet();
         animatorset3 = new AnimatorSet();
-        animatorset1.setDuration(1500);
+        animatorset1.setDuration(800);
         animatorset1.setInterpolator(new LinearInterpolator());
         animatorset1.playTogether(animleftdownleft1, animleftdownleft2);
         animatorset1.start();
-        animatorset2.setDuration(1500);
+        animatorset2.setDuration(800);
         animatorset2.setInterpolator(new LinearInterpolator());
         animatorset2.playTogether(animdownrightleft1, animdownrightleft2);
         animatorset2.start();
-        animatorset3.setDuration(750);
+        animatorset3.setDuration(400);
         animatorset3.setInterpolator(new LinearInterpolator());
         animatorset3.playTogether(animrightleftleft1, animrightleftleft2);
         animatorset3.start();
@@ -147,7 +182,7 @@ public class DongHua3Activity extends Activity{
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 animatorset3 = new AnimatorSet();
-                animatorset3.setDuration(750);
+                animatorset3.setDuration(400);
                 animatorset3.setInterpolator(new LinearInterpolator());
                 animatorset3.playTogether(animrightleftleft3, animrightleftleft4);
                 animatorset3.start();

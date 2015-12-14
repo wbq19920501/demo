@@ -19,6 +19,9 @@ ADDED from AndroidManifest.xml:4:5
 		ADDED from AndroidManifest.xml:4:22
 application
 ADDED from AndroidManifest.xml:5:5
+MERGED from com.android.support:appcompat-v7:19.1.0:19:5
+MERGED from com.android.support:support-v4:23.1.1:22:5
+MERGED from com.android.support:support-v4:23.1.1:22:5
 	android:label
 		ADDED from AndroidManifest.xml:8:9
 	android:allowBackup
@@ -63,8 +66,15 @@ activity#com.wbq.mvp.DongHua3Activity
 ADDED from AndroidManifest.xml:23:9
 	android:name
 		ADDED from AndroidManifest.xml:23:19
+activity#com.wbq.mvp.MenuLeft
+ADDED from AndroidManifest.xml:24:9
+	android:name
+		ADDED from AndroidManifest.xml:24:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
+MERGED from com.android.support:appcompat-v7:19.1.0:18:5
+MERGED from com.android.support:support-v4:23.1.1:20:5
+MERGED from com.android.support:support-v4:23.1.1:20:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

@@ -21,6 +21,7 @@
         <activity android:name=".DongHua1Activity"/>
         <activity android:name=".DongHua2Activity"/>
         <activity android:name=".DongHua3Activity"/>
+        <activity android:name=".MenuLeft"/>
     </application>
 
 </manifest>

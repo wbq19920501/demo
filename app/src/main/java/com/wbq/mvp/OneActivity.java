@@ -106,5 +106,13 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
+        Button chouti = (Button) findViewById(R.id.chouti);
+        chouti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,MenuLeft.class);
+                startActivity(intent);
+            }
+        });
     }
 }

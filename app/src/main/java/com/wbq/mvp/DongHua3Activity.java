@@ -4,14 +4,17 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by wbq501 on 2015-12-11 16:37.
@@ -19,7 +22,7 @@ import android.widget.TextView;
  */
 public class DongHua3Activity extends Activity{
     AnimatorSet animatorset1,animatorset2,animatorset3;
-    TextView ceshi1,ceshi2,ceshi3;
+    TextView ceshi1,ceshi2,ceshi3,henxian;
     ObjectAnimator animleftdown1,animleftdown2,animdownright1,animdownright2,animrightleft1
             ,animrightleft2,animrightleft3,animrightleft4;
     ObjectAnimator animleftdownleft1,animleftdownleft2,animdownrightleft1,animdownrightleft2,animrightleftleft1
@@ -35,6 +38,7 @@ public class DongHua3Activity extends Activity{
         ceshi1 = (TextView) findViewById(R.id.ceshi1);
         ceshi2 = (TextView) findViewById(R.id.ceshi2);
         ceshi3 = (TextView) findViewById(R.id.ceshi3);
+        henxian = (TextView) findViewById(R.id.henxian);
         imganim = (ImageView) findViewById(R.id.imganim);
         ceshi1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +71,13 @@ public class DongHua3Activity extends Activity{
             }
         });
     }
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Toast.makeText(DongHua3Activity.this,"2222222",Toast.LENGTH_SHORT).show();
+        return super.onTouchEvent(event);
+    }
     private void imganimleft() {
+        Toast.makeText(DongHua3Activity.this,"111111",Toast.LENGTH_SHORT).show();
         int x1 = imganim.getLeft();
         int imgw = imganim.getRight()-x1;
         DisplayMetrics dm = new DisplayMetrics();
@@ -80,6 +89,11 @@ public class DongHua3Activity extends Activity{
         animatorSet.play(objectAnimator2).after(objectAnimator1);
         animatorSet.setDuration(350);
         animatorSet.start();
+        ObjectAnimator oaxian = ObjectAnimator.ofFloat(henxian,"X",ceshi1.getLeft(),henxian.getLeft());
+        AnimatorSet asxian = new AnimatorSet();
+        asxian.play(oaxian);
+        asxian.setDuration(800);
+        asxian.start();
     }
 
     private void chooseanimleft(int i) {

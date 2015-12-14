@@ -3,35 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:id="@+id/donghua"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_marginLeft="50dp"
-            android:id="@+id/ceshi1"
-            android:layout_width="100dp"
-            android:background="#fff333"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="测试1"/>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/ceshi2"
-            android:layout_width="100dp"
-            android:background="#222fff"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="测试2"/>
-        <TextView
-            android:background="#000000"
-            android:id="@+id/ceshi3"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="测试3"/>
-    </LinearLayout>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

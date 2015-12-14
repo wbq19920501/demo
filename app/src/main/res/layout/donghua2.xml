@@ -77,6 +77,7 @@
                 android:text="测试3"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/xian"
             android:layout_below="@id/idtext"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
@@ -97,6 +98,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
         </LinearLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_below="@id/xian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
     <TextView
         android:id="@+id/text"

@@ -22,6 +22,7 @@
         <activity android:name=".DongHua2Activity"/>
         <activity android:name=".DongHua3Activity"/>
         <activity android:name=".MenuLeft"/>
+        <activity android:name=".KuoSan"/>
     </application>
 
 </manifest>

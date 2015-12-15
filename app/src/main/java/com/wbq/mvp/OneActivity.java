@@ -1,5 +1,6 @@
 package com.wbq.mvp;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -12,6 +13,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import at.markushi.ui.ActionView;
+import at.markushi.ui.RevealColorView;
+import at.markushi.ui.action.BackAction;
+import at.markushi.ui.action.CloseAction;
+import at.markushi.ui.action.DrawerAction;
+import at.markushi.ui.action.PlusAction;
 
 /**
  * Created by wbq501 on 2015-11-17 16:06.
@@ -98,10 +106,12 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
-        Button donghua3 = (Button) findViewById(R.id.donghua3);
+        final Button donghua3 = (Button) findViewById(R.id.donghua3);
         donghua3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActionView actionView = new ActionView(OneActivity.this);
+                actionView.setAction(new BackAction(),ActionView.ROTATE_COUNTER_CLOCKWISE);
                 Intent intent = new Intent(OneActivity.this,DongHua3Activity.class);
                 startActivity(intent);
             }
@@ -111,6 +121,44 @@ public class OneActivity extends Activity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OneActivity.this,MenuLeft.class);
+                startActivity(intent);
+            }
+        });
+        final RevealColorView action = (RevealColorView) findViewById(R.id.action);
+        final int i = 0;
+        action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                action.setAction(new PlusAction(), ActionView.ROTATE_CLOCKWISE);
+//                action.setAction(new DrawerAction(),ActionView.ROTATE_CLOCKWISE);
+                action.reveal(100, 100, getResources().getColor(android.R.color.holo_red_dark),1,5000, new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+            }
+        });
+        Button kuosan = (Button) findViewById(R.id.kuosan);
+        kuosan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,KuoSan.class);
                 startActivity(intent);
             }
         });

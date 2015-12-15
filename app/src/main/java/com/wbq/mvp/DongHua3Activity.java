@@ -109,7 +109,7 @@ public class DongHua3Activity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (viewpagechang){
+                if (viewpagechang) {
                     int changnum = pagerchange - position;
                     switch (changnum) {
                         case 0:

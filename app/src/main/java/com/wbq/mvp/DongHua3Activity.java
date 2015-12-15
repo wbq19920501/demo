@@ -43,6 +43,10 @@ public class DongHua3Activity extends FragmentActivity {
      * changpagerimg ==0 不切换 1右切换 2左切换
      */
     private int changpagerimg = 0;
+    private int viewpageleft = 1;
+    private int viewpageright = 1;
+    private boolean btnchange = false;
+    private boolean viewpagechang = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +63,11 @@ public class DongHua3Activity extends FragmentActivity {
             public void onClick(View v) {
 //                chooseanimright(changright);
 //                clickanimright();
+                btnchange = true;
                 imganimleft();
                 chooseanimleft(changleft);
                 clickanimleft();
+                btnchange = false;
             }
         });
         ceshi2.setOnClickListener(new View.OnClickListener() {
@@ -69,9 +75,11 @@ public class DongHua3Activity extends FragmentActivity {
             public void onClick(View v) {
 //                chooseanimright(changright);
 //                clickanimright();
+                btnchange = true;
                 imganimleft();
                 chooseanimleft(changleft);
                 clickanimleft();
+                btnchange = false;
             }
         });
         ceshi3.setOnClickListener(new View.OnClickListener() {
@@ -79,9 +87,11 @@ public class DongHua3Activity extends FragmentActivity {
             public void onClick(View v) {
 //                chooseanimright(changright);
 //                clickanimright();
+                btnchange = true;
                 imganimleft();
                 chooseanimleft(changleft);
                 clickanimleft();
+                btnchange = false;
             }
         });
     }
@@ -99,29 +109,31 @@ public class DongHua3Activity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                int changnum = pagerchange-position;
-                switch (changnum){
-                    case 0:
-                        changpagerimg = 0;
-                        break;
-                    case 1:
-                        changpagerimg = 1;
-                        break;
-                    case -1:
-                        changpagerimg = 2;
-                        break;
-                }
-                pagerchange = position;
-                switch (position) {
-                    case 0:
-                        viewpageimgchang();
-                        break;
-                    case 1:
-                        viewpageimgchang();
-                        break;
-                    case 2:
-                        viewpageimgchang();
-                        break;
+                if (viewpagechang){
+                    int changnum = pagerchange - position;
+                    switch (changnum) {
+                        case 0:
+                            changpagerimg = 0;
+                            break;
+                        case 1:
+                            changpagerimg = 1;
+                            break;
+                        case -1:
+                            changpagerimg = 2;
+                            break;
+                    }
+                    pagerchange = position;
+                    switch (position) {
+                        case 0:
+                            viewpageimgchang();
+                            break;
+                        case 1:
+                            viewpageimgchang();
+                            break;
+                        case 2:
+                            viewpageimgchang();
+                            break;
+                    }
                 }
             }
 
@@ -135,15 +147,33 @@ public class DongHua3Activity extends FragmentActivity {
         switch (changpagerimg){
             case 0:
                 break;
-            case 1:
+            case 1://viewpage向右
                 imganimright();
-                chooseanimright(changright);
+                chooseanimright(viewpageright);
                 clickanimright();
+                viewpageleft +=2;
+                if (viewpageright == 3){
+                    viewpageright = 1;
+                    viewpageleft = 1;
+                    changright = 3;
+                }else if (viewpageright == 1){
+                    viewpageleft = 3;
+                    viewpageright = 1;
+                }
                 break;
-            case 2:
+            case 2://viewpage向左
                 imganimleft();
-                chooseanimleft(changleft);
+                chooseanimleft(viewpageleft);
                 clickanimleft();
+                viewpageright +=2;
+                if (viewpageleft == 3){
+                    viewpageright = 1;
+                    viewpageleft = 1;
+                    changleft = 3;
+                }else if (viewpageleft == 1){
+                    viewpageright = 3;
+                    viewpageleft = 1;
+                }
                 break;
         }
     }
@@ -322,6 +352,25 @@ public class DongHua3Activity extends FragmentActivity {
      * clickanimleft 顺时针动画
      */
     private void clickanimleft() {
+        if (btnchange){
+            viewpagechang = false;
+            switch (changleft){
+                case 1:
+                    pager.setCurrentItem(2);
+                    viewpageright = 3;
+                    break;
+                case 2:
+                    pager.setCurrentItem(0);
+                    viewpageleft = 1;
+                    viewpageright = 1;
+                    break;
+                case 3:
+                    pager.setCurrentItem(1);
+                    viewpageleft = 3;
+                    break;
+            }
+            viewpagechang = true;
+        }
         animatorset1 = new AnimatorSet();
         animatorset2 = new AnimatorSet();
         animatorset3 = new AnimatorSet();

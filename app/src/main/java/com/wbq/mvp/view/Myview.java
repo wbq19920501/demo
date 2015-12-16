@@ -2,6 +2,7 @@ package com.wbq.mvp.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,7 +14,25 @@ public class Myview extends ViewGroup{
     public Myview(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs)
+    {
+        return new MarginLayoutParams(getContext(), attrs);
+    }
 
+    @Override
+    protected LayoutParams generateDefaultLayoutParams()
+    {
+        return new MarginLayoutParams(LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT);
+    }
+
+    @Override
+    protected LayoutParams generateLayoutParams(
+            LayoutParams p)
+    {
+        return new MarginLayoutParams(p);
+    }
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -95,7 +114,7 @@ public class Myview extends ViewGroup{
             View childView = getChildAt(i);
             cWidth = childView.getMeasuredWidth();
             cHeight = childView.getMeasuredHeight();
-            cParams = (MarginLayoutParams) childView.getLayoutParams();
+            cParams = (MarginLayoutParams)childView.getLayoutParams();
             int cl = 0, ct = 0, cr = 0, cb = 0;
             switch (i)
             {

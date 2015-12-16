@@ -162,5 +162,21 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
+        Button myview = (Button) findViewById(R.id.myview);
+        myview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,MyViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button item_btn = (Button) findViewById(R.id.item_btn);
+        item_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,HuanBaoActivty.class);
+                startActivity(intent);
+            }
+        });
     }
 }

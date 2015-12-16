@@ -23,6 +23,8 @@
         <activity android:name=".DongHua3Activity"/>
         <activity android:name=".MenuLeft"/>
         <activity android:name=".KuoSan"/>
+        <activity android:name=".MyViewActivity"/>
+        <activity android:name=".HuanBaoActivty"/>
     </application>
 
 </manifest>

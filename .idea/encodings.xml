@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/DongHua2Activity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/DongHua3Activity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/MenuLeft.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/RotateView.java" charset="UTF-8" />
   </component>
 </project>

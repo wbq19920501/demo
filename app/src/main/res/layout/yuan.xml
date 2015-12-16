@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@drawable/bg"
-    android:layout_height="100dp">
+    android:layout_height="match_parent">
     <com.wbq.mvp.view.CircleMenuLayout
         android:id="@+id/myyuan"
         android:padding="100dp"

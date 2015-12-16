@@ -12,9 +12,11 @@ import com.wbq.mvp.view.YuanView;
  * demo
  */
 public class YuanActivity extends Activity{
-    private String[] mItemTexts = new String[] { "安全中心 ", "特色服务", "投资理财"};
+    private String[] mItemTexts = new String[] { "安全中心 ", "特色服务", "投资理财", "转账汇款", "我的账户", "信用卡"};
     private int[] mItemImgs = new int[] { R.drawable.home_mbank_1_normal,
-            R.drawable.home_mbank_2_normal, R.drawable.home_mbank_3_normal};
+            R.drawable.home_mbank_2_normal, R.drawable.home_mbank_3_normal,
+            R.drawable.home_mbank_4_normal, R.drawable.home_mbank_5_normal,
+            R.drawable.home_mbank_6_normal };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

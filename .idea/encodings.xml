@@ -5,16 +5,20 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/DongHua3Activity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/HuanBaoActivty.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/MenuLeft.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/MyProgressBarActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/fragment/OneFragment.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/fragment/ThreeFragment.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/fragment/TwoFragment.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/CustomImgContainer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/MyProGressBar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/MyProGressBar2.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/Myview.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/ProgressView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/RotateView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_head_bg1.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/text1.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/text_0.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/text_1.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml" charset="UTF-8" />
   </component>
 </project>

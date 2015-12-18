@@ -51,7 +51,7 @@ public class ProgressView extends View {
         super.onDraw(canvas);
         initPaint();
         RectF rectBlackBg = new RectF(20, 20, mWidth - 20, mHeight - 20);
-        canvas.drawArc(rectBlackBg, 0, 360, false, mPaint);
+        canvas.drawArc(rectBlackBg, 180, 360, false, mPaint);
         mPaint.setColor(Color.BLACK);
         canvas.drawText(score + "分", mWidth / 2, mHeight / 2, mTextPaint);
         mTextPaint.setTextSize(40);
@@ -85,7 +85,7 @@ public class ProgressView extends View {
                     Shader.TileMode.MIRROR);
             mPaint.setShader(shader);
         }
-        canvas.drawArc(rectBlackBg, 180, section * 360, false, mPaint);
+        canvas.drawArc(rectBlackBg, 145, section * 250, false, mPaint);
     }
 
     private void initPaint() {

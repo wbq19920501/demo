@@ -67,7 +67,8 @@ public class MyProgressBarActivity extends Activity{
 
             @Override
             public void onClick(View v) {
-                value = random.nextInt(100) + 1;
+                value = 100;
+//                value = random.nextInt(100) + 1;
                 mProgressView.setCurrentCount(value);
                 mProgressView.setScore(value);
             }

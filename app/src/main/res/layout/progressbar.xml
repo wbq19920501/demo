@@ -16,12 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#000000"/>
-    <com.wbq.mvp.view.MyProGressBar2
-        android:layout_marginTop="50dp"
+    <com.wbq.mvp.view.MyYuan
+        android:id="@+id/myviewyuan"
+        android:layout_marginTop="10dp"
         android:layout_width="200dp"
-        android:layout_height="60dp"
+        android:layout_height="200dp"
         >
-    </com.wbq.mvp.view.MyProGressBar2>
+    </com.wbq.mvp.view.MyYuan>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,6 +82,11 @@
         android:text="自定义园1"/>
     <Button
         android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义园2"/>
+    <Button
+        android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="自定义园2"/>

@@ -11,15 +11,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by wbq501 on 2015-12-18 14:22.
+ * Created by wbq501 on 2015-12-18 16:03.
  * demo
  */
-public class ProgressView extends View {
+public class ProgressView2 extends View {
 
     //分段颜色
     private static final int[] SECTION_COLORS = { Color.GREEN, Color.YELLOW,
             Color.RED };
-    private static final String ALARM_LEVEL = "高危";
+    private static final String[] ALARM_LEVEL = { "安全", "低危", "中危", "高危" };
     private float maxCount;
     private float currentCount;
     private int score;
@@ -28,16 +28,16 @@ public class ProgressView extends View {
     private Paint mTextPaint;
     private int mWidth, mHeight;
 
-    public ProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressView2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
-    public ProgressView(Context context, AttributeSet attrs) {
+    public ProgressView2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ProgressView(Context context) {
+    public ProgressView2(Context context) {
         this(context, null);
     }
 
@@ -51,7 +51,7 @@ public class ProgressView extends View {
         super.onDraw(canvas);
         initPaint();
         RectF rectBlackBg = new RectF(20, 20, mWidth - 20, mHeight - 20);
-        canvas.drawArc(rectBlackBg, 180, 360, false, mPaint);
+        canvas.drawArc(rectBlackBg, 0, 360, false, mPaint);
         mPaint.setColor(Color.BLACK);
         canvas.drawText(score + "分", mWidth / 2, mHeight / 2, mTextPaint);
         mTextPaint.setTextSize(40);
@@ -59,7 +59,6 @@ public class ProgressView extends View {
             canvas.drawText(crrentLevel, mWidth / 2, mHeight / 2 + 50,
                     mTextPaint);
         }
-
         float section = currentCount / maxCount;
         if (section <= 1.0f / 3.0f) {
             if (section != 0.0f) {
@@ -70,7 +69,6 @@ public class ProgressView extends View {
         } else {
             int count = (section <= 1.0f / 3.0f * 2) ? 2 : 3;
             int[] colors = new int[count];
-
             System.arraycopy(SECTION_COLORS, 0, colors, 0, count);
             float[] positions = new float[count];
             if (count == 2) {
@@ -87,7 +85,7 @@ public class ProgressView extends View {
                     Shader.TileMode.MIRROR);
             mPaint.setShader(shader);
         }
-        canvas.drawArc(rectBlackBg, 145, section * 250, false, mPaint);
+        canvas.drawArc(rectBlackBg, 180, section * 360, false, mPaint);
     }
 
     private void initPaint() {
@@ -132,7 +130,15 @@ public class ProgressView extends View {
 
     public void setScore(int score) {
         this.score = score;
-        this.crrentLevel = "轻度污染";
+        if (score == 100) {
+            this.crrentLevel = ALARM_LEVEL[0];
+        } else if (score >= 70 && score < 100) {
+            this.crrentLevel = ALARM_LEVEL[1];
+        } else if (score >= 30 && score < 70) {
+            this.crrentLevel = ALARM_LEVEL[2];
+        } else {
+            this.crrentLevel = ALARM_LEVEL[3];
+        }
         invalidate();
     }
 

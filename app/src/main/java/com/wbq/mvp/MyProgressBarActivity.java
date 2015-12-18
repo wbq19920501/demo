@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.wbq.mvp.view.MyYuan;
 import com.wbq.mvp.view.ProgressView;
 import com.wbq.mvp.view.RoundProgressBar;
 
@@ -22,7 +23,8 @@ public class MyProgressBarActivity extends Activity{
     private Button test;
     private int value;
     private Random random = new Random(System.currentTimeMillis());
-
+    private MyYuan myviewyuan;
+    private int num=107;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,16 @@ public class MyProgressBarActivity extends Activity{
 //                value = random.nextInt(100) + 1;
                 mProgressView.setCurrentCount(value);
                 mProgressView.setScore(value);
+            }
+        });
+        myviewyuan = (MyYuan) findViewById(R.id.myviewyuan);
+        myviewyuan.setMaxCount(200);
+        ((Button)findViewById(R.id.btn3)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                num = 107;
+                myviewyuan.setCurrentCount(num);
+                myviewyuan.setScore(num);
             }
         });
     }

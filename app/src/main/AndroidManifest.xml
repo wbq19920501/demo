@@ -25,6 +25,7 @@
         <activity android:name=".KuoSan"/>
         <activity android:name=".MyViewActivity"/>
         <activity android:name=".HuanBaoActivty"/>
+        <activity android:name=".MyProgressBarActivity"/>
     </application>
 
 </manifest>

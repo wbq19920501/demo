@@ -4,17 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
+
+import com.wbq.mvp.fragment.TabFragment;
+
 /**
  * Created by wbq501 on 2015-12-11 16:37.
  * demo
@@ -63,6 +64,9 @@ public class DongHua3Activity extends FragmentActivity {
             public void onClick(View v) {
 //                chooseanimright(changright);
 //                clickanimright();
+                float ceshi1X = ceshi1.getX();
+                float translationX = ceshi1.getTranslationX();
+                Toast.makeText(DongHua3Activity.this,"前"+ceshi1X+"后"+translationX,Toast.LENGTH_SHORT).show();
                 btnchange = true;
                 imganimleft();
                 chooseanimleft(changleft);
@@ -75,6 +79,9 @@ public class DongHua3Activity extends FragmentActivity {
             public void onClick(View v) {
 //                chooseanimright(changright);
 //                clickanimright();
+                float ceshi2X = ceshi2.getX();
+                float translation2X = ceshi2.getTranslationX();
+                Toast.makeText(DongHua3Activity.this,"前2"+ceshi2X+"后2"+translation2X,Toast.LENGTH_SHORT).show();
                 btnchange = true;
                 imganimleft();
                 chooseanimleft(changleft);
@@ -87,6 +94,9 @@ public class DongHua3Activity extends FragmentActivity {
             public void onClick(View v) {
 //                chooseanimright(changright);
 //                clickanimright();
+                float ceshi3X = ceshi3.getX();
+                float translation3X = ceshi3.getTranslationX();
+                Toast.makeText(DongHua3Activity.this,"前3"+ceshi3X+"后3"+translation3X,Toast.LENGTH_SHORT).show();
                 btnchange = true;
                 imganimleft();
                 chooseanimleft(changleft);

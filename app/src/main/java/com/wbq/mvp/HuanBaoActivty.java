@@ -6,6 +6,9 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,11 +19,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wbq.mvp.adapter.MyFragmentPagerAdapter;
+import com.wbq.mvp.fragment.OneFragment;
+import com.wbq.mvp.fragment.ThreeFragment;
+import com.wbq.mvp.fragment.TwoFragment;
+
+import java.util.ArrayList;
+
 /**
  * Created by wbq501 on 2015-12-16 16:51.
  * demo
  */
-public class HuanBaoActivty extends Activity implements View.OnTouchListener,GestureDetector.OnGestureListener {
+public class HuanBaoActivty extends FragmentActivity implements View.OnTouchListener,GestureDetector.OnGestureListener {
     LinearLayout textitem;
     TextView text0,text1,text2,henxian;
     ImageView imganim;
@@ -39,7 +49,10 @@ public class HuanBaoActivty extends Activity implements View.OnTouchListener,Ges
     GestureDetector mGestureDetector;
 
     int changanim = 1;
-
+    ViewPager pager;
+    int changpager = 1;
+    private boolean huadongchangpager = true;
+    private ArrayList<Fragment> fragmentList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +74,7 @@ public class HuanBaoActivty extends Activity implements View.OnTouchListener,Ges
             changanim -=1;
             if (changanim == -1)
                 changanim = 2;
+            changpager(changanim);
         } else if (e2.getX()-e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             // Fling right
@@ -70,8 +84,27 @@ public class HuanBaoActivty extends Activity implements View.OnTouchListener,Ges
             changanim +=1;
             if (changanim == 3)
                 changanim = 0;
+            changpager(changanim);
         }
         return false;
+    }
+
+    private void changpager(int i) {
+        huadongchangpager = false;
+        switch (changanim){
+            case 0:
+                i = 2;
+                break;
+            case 1:
+                i = 1;
+                break;
+            case 2:
+                i = 0;
+                break;
+        }
+        changpager = i;
+        pager.setCurrentItem(i);
+        huadongchangpager = true;
     }
 
     private void animtextright(int i) {
@@ -280,10 +313,10 @@ public class HuanBaoActivty extends Activity implements View.OnTouchListener,Ges
                 ObjectAnimator imgint = null;
                 switch (i){
                     case 0:
-                        imganim.setImageDrawable(getResources().getDrawable(R.drawable.text_1));
+                        imganim.setImageDrawable(getResources().getDrawable(R.drawable.text1));
                         break;
                     case 1:
-                        imganim.setImageDrawable(getResources().getDrawable(R.drawable.text1));
+                        imganim.setImageDrawable(getResources().getDrawable(R.drawable.text_1));
                         break;
                     case 2:
                         imganim.setImageDrawable(getResources().getDrawable(R.drawable.text_0));
@@ -437,5 +470,68 @@ public class HuanBaoActivty extends Activity implements View.OnTouchListener,Ges
         item0 = (RelativeLayout) findViewById(R.id.item0);
         item1 = (RelativeLayout) findViewById(R.id.item1);
         item2 = (RelativeLayout) findViewById(R.id.item2);
+        pager = (ViewPager) findViewById(R.id.pager);
+        fragmentList = new ArrayList<Fragment>();
+        OneFragment oneFragment = new OneFragment();
+        TwoFragment twoFragment = new TwoFragment();
+        ThreeFragment threeFragment = new ThreeFragment();
+        fragmentList.add(oneFragment);
+        fragmentList.add(twoFragment);
+        fragmentList.add(threeFragment);
+        pager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));
+        pager.setCurrentItem(1);
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (huadongchangpager){
+                    Toast.makeText(HuanBaoActivty.this,"position"+position,Toast.LENGTH_SHORT).show();
+                    getzuobiao();
+                    switch (position){
+                        case 2:
+                            imgleftxianright(1);
+                            animtextleft(1);
+                            changanim -=1;
+                            break;
+                        case 0:
+                            imgrightxianleft(1);
+                            animtextright(1);
+                            changanim +=1;
+                            break;
+                        case 1:
+                            int i = changpager - position;
+                            switch (i){
+                                case 0:
+                                    break;
+                                case 1:
+                                    imgrightxianleft(changanim);
+                                    animtextright(changanim);
+                                    changanim +=1;
+                                    if (changanim == 3)
+                                        changanim = 0;
+                                    break;
+                                case -1:
+                                    imgleftxianright(changanim);
+                                    animtextleft(changanim);
+                                    changanim -=1;
+                                    if (changanim == -1)
+                                        changanim = 2;
+                                    break;
+                            }
+                            break;
+                    }
+                    changpager = position;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }

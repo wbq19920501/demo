@@ -124,36 +124,6 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
-        final RevealColorView action = (RevealColorView) findViewById(R.id.action);
-        final int i = 0;
-        action.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                action.setAction(new PlusAction(), ActionView.ROTATE_CLOCKWISE);
-//                action.setAction(new DrawerAction(),ActionView.ROTATE_CLOCKWISE);
-                action.reveal(100, 100, getResources().getColor(android.R.color.holo_red_dark),1,5000, new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                });
-            }
-        });
         Button kuosan = (Button) findViewById(R.id.kuosan);
         kuosan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +145,14 @@ public class OneActivity extends Activity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OneActivity.this,HuanBaoActivty.class);
+                startActivity(intent);
+            }
+        });
+        Button progressBar1 = (Button) findViewById(R.id.progressBar1);
+        progressBar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,MyProgressBarActivity.class);
                 startActivity(intent);
             }
         });

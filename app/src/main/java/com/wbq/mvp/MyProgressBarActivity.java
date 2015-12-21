@@ -77,10 +77,12 @@ public class MyProgressBarActivity extends Activity{
         });
         myviewyuan = (MyYuan) findViewById(R.id.myviewyuan);
         myviewyuan.setMaxCount(200);
+        myviewyuan.setMsg("-轻度污染-");
         ((Button)findViewById(R.id.btn3)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num = 107;
+//                num = 107;
+                num = random.nextInt(200) + 1;
                 myviewyuan.setCurrentCount(num);
                 myviewyuan.setScore(num);
             }

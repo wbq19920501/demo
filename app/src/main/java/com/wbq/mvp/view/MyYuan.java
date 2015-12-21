@@ -66,12 +66,31 @@ public class MyYuan extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        initPaint();RectF rectBlackBg = new RectF(20, 20, mWidth - 20, mHeight - 20);
+        initPaint();
+        /**
+         * 参数1：圆的范围大小
+         * 参数2：起始角度
+         * 参数3：圆心角角度，360为圆，180为半圆
+         * 参数4：中心
+         * 参数5：画笔Paint，可以设置画线or填充，设置颜色，设置线的粗细等等
+         */
+        RectF rectBlackBg = new RectF(20, 20, mWidth - 20, mHeight - 20);
         canvas.drawArc(rectBlackBg, 145, 250, false, mPaint);
         mPaint.setColor(Color.BLACK);
         canvas.drawText(score + "分", mWidth / 2, mHeight / 2, mTextPaint);
-        canvas.drawText("-轻度污染-", mWidth / 2, mHeight / 2 + 50,mTextPaint);
+        canvas.drawText(msg, mWidth / 2, mHeight / 2 + 50, mTextPaint);
         mTextPaint.setTextSize(40);
+        float section = currentCount / maxCount;
+        if (section <= 1.0f / 3.0f){
+            if (section != 0.0f) {
+                mPaint.setColor(Color.RED);
+            } else {
+                mPaint.setColor(Color.TRANSPARENT);
+            }
+        }else {
+            mPaint.setColor(Color.BLUE);
+        }
+        canvas.drawArc(rectBlackBg, 145, section*250, false, mPaint);
     }
     private void initPaint() {
         mPaint.setAntiAlias(true);//消除锯齿
@@ -142,7 +161,13 @@ public class MyYuan extends View{
 
     public void setScore(int score) {
         this.score = score;
-        this.msg = "-轻度污染-";
         invalidate();
+    }
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

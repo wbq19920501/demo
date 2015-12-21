@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,12 +41,12 @@ public class HuanBaoActivty extends FragmentActivity implements View.OnTouchList
     int item0left,item1left,item2left;
     int henxianleft,imganimleft;
     int item0right,item1right,item2right;
-    int henxianright,imganimright;
+    int henxianright,imganimright,imganimtop;
     int item0top,item0buttom,item1top,item1buttom,item2top,item2buttom;
     int changy = 30;
     int pingmuw;
 
-    private static final int FLING_MIN_DISTANCE = 50;
+    private static final int FLING_MIN_DISTANCE = 30;
     private static final int FLING_MIN_VELOCITY = 0;
     GestureDetector mGestureDetector;
 
@@ -53,6 +55,7 @@ public class HuanBaoActivty extends FragmentActivity implements View.OnTouchList
     int changpager = 1;
     private boolean huadongchangpager = true;
     private ArrayList<Fragment> fragmentList;
+    LinearLayout donghua1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +64,50 @@ public class HuanBaoActivty extends FragmentActivity implements View.OnTouchList
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         pingmuw = dm.widthPixels;
         initview();
+        menudrawlayout();
     }
+    public void upanim(){
+        getzuobiao();
+        donghua1 = (LinearLayout) findViewById(R.id.donghua1);
+        AnimatorSet anim = new AnimatorSet();
+        int upchanglayout = -(donghua1.getBottom()-donghua1.getTop());
+//        ObjectAnimator item0obanimx = ObjectAnimator.ofFloat(item0,"X",item0left,item0left-50);
+        ObjectAnimator item0obanimy = ObjectAnimator.ofFloat(item0,"Y",item0top,imganimtop);
+        ObjectAnimator item1obanimy = ObjectAnimator.ofFloat(item1,"Y",item1top,imganimtop);
+//        ObjectAnimator item2obanimx = ObjectAnimator.ofFloat(item2,"X",item2right,item2right+50);
+        ObjectAnimator item2obanimy = ObjectAnimator.ofFloat(item2,"Y",item0top,imganimtop);
+        ObjectAnimator imgobanimy = ObjectAnimator.ofFloat(donghua1,"Y",donghua1.getTop(),upchanglayout);
+        ObjectAnimator imgobanimalpha = ObjectAnimator.ofFloat(donghua1,"alpha",1f,0f);
+        anim.playTogether(item0obanimy,item1obanimy,item2obanimy,imgobanimy,imgobanimalpha);
+        anim.setDuration(500);
+        anim.start();
+        anim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                donghua1.setVisibility(View.GONE);
+                super.onAnimationEnd(animation);
+            }
+        });
+    }
+    private void menudrawlayout() {
+        final DrawerLayout drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        TextView leftmenubtn = (TextView) findViewById(R.id.leftmenubtn);
+        TextView rightmenubtn = (TextView) findViewById(R.id.rightmenubtn);
+        leftmenubtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerlayout.openDrawer(Gravity.LEFT);
+            }
+        });
+        TextView ceshibtn = (TextView) drawerlayout.findViewById(R.id.ceshibtn);
+        ceshibtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HuanBaoActivty.this, "左边的点击事件", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         getzuobiao();
@@ -272,6 +318,7 @@ public class HuanBaoActivty extends FragmentActivity implements View.OnTouchList
         item2right = item2.getRight();
         henxianright = henxian.getRight();
         imganimright = imganim.getRight();
+        imganimtop = imganim.getTop();
         item0top = item0.getTop();
         item0buttom = item0.getBottom();
         item1top = item1.getTop();

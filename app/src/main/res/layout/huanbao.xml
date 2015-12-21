@@ -19,20 +19,20 @@
                 android:layout_height="40dp">
                 <TextView
                     android:id="@+id/leftmenubtn"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:textColor="@android:color/white"
                     android:text="="/>
                 <TextView
                     android:id="@+id/rightmenubtn"
-                    android:layout_marginRight="10dp"
+                    android:gravity="center"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:textColor="@android:color/white"
                     android:text="="/>
             </RelativeLayout>
@@ -161,16 +161,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
-    <!--<android.support.design.widget.NavigationView-->
-        <!--android:id="@+id/leftmenulist"-->
-        <!--android:background="@android:color/white"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="start"-->
-        <!--app:headerLayout="@layout/head_img"-->
-        <!--app:itemTextColor="#000000"-->
-        <!--app:itemIconTint="#000000"-->
-        <!--app:menu="@menu/leftmenu_items" />-->
     <RelativeLayout
         android:id="@+id/leftmenulist"
         android:layout_width="wrap_content"

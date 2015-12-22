@@ -26,6 +26,7 @@
         <activity android:name=".MyViewActivity"/>
         <activity android:name=".HuanBaoActivty"/>
         <activity android:name=".MyProgressBarActivity"/>
+        <activity android:name=".FrameLayoutActivity"/>
     </application>
 
 </manifest>

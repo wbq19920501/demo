@@ -156,5 +156,13 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
+        Button btnceng = (Button) findViewById(R.id.btnceng);
+        btnceng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,FrameLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

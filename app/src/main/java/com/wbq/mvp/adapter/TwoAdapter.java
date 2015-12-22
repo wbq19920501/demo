@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wbq.mvp.fragment.TwoFragment;
 
@@ -51,6 +52,12 @@ public class TwoAdapter<T> extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
         holder.text.setText(list.get(position).toString());
+        holder.text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Two",Toast.LENGTH_SHORT).show();
+            }
+        });
         return convertView;
     }
     static class ViewHolder{

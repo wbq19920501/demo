@@ -23,6 +23,12 @@
         android:layout_height="200dp"
         >
     </com.wbq.mvp.view.MyYuan>
+    <com.wbq.mvp.view.ShapeView
+        android:id="@+id/shapeView"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+    </com.wbq.mvp.view.ShapeView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

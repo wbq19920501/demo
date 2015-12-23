@@ -27,6 +27,7 @@
         <activity android:name=".HuanBaoActivty"/>
         <activity android:name=".MyProgressBarActivity"/>
         <activity android:name=".FrameLayoutActivity"/>
+        <activity android:name=".MyZiDingYi"/>
     </application>
 
 </manifest>

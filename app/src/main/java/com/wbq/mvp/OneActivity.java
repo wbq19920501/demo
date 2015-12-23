@@ -164,5 +164,13 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
+        Button myyuan = (Button) findViewById(R.id.myyuan);
+        myyuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,MyZiDingYi.class);
+                startActivity(intent);
+            }
+        });
     }
 }

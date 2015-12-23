@@ -5,19 +5,37 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="wrap_content"
-        android:textColor="#ffffff"
-        android:layout_height="wrap_content"
-        android:text="0"/>
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+    <LinearLayout
+        android:id="@+id/one_loading"
         android:layout_width="match_parent"
-        android:background="#ffffff"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="#ffffff"/>
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/loading_animation" />
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/fragment_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:background="#00000000">
+        <TextView
+            android:id="@+id/pagerhead"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#00000000"/>
+        <ListView
+            android:id="@+id/onelist"
+            android:background="@android:color/holo_blue_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </LinearLayout>
 </LinearLayout>

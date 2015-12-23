@@ -4,6 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,7 +37,7 @@ import java.util.ArrayList;
  */
 public class FrameLayoutActivity extends FragmentActivity implements View.OnTouchListener,GestureDetector.OnGestureListener{
     ImageView imganim;
-    TextView henxian;
+    TextView henxian,henxian1,henxian_1;
     LinearLayout donghua1,textanim,xian;
     FrameLayout item0,item1,item2;
     FrameLayout bj,xianfram,textfram,imgfram,caidanfram;
@@ -42,6 +45,9 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
     int caidanframtop,caidanframbottom;
     int imganimtop,imganimbottom,imganimleft,imganimright;
 
+    /**
+     * changanim 改变动画的值
+     */
     int changanim = 1;
     ViewPager pager;
     int changpager = 1;
@@ -51,9 +57,9 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
     private ArrayList<Fragment> fragmentList;
 
     int item0left,item1left,item2left;
-    int henxianleft;
+    int henxianleft,henxian_1left,henxian1left;
     int item0right,item1right,item2right;
-    int henxianright;
+    int henxianright,henxian_1right,henxian1right;
     int item0top,item0buttom,item1top,item1buttom,item2top,item2buttom;
     int changy = 30;
     int pingmuw,pingmuh;
@@ -62,7 +68,7 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
     private static final int FLING_MIN_DISTANCE = 30;
     private static final int FLING_MIN_VELOCITY = 0;
     GestureDetector mGestureDetector;
-
+    private boolean upchang = false;//向上改变
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +79,12 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
         pingmuw = dm.widthPixels;
         pingmuh = dm.heightPixels;
         twoFragment = new TwoFragment();
-        imganim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                upanim();
-            }
-        });
+//        imganim.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                upanim();
+//            }
+//        });
         menudrawlayout();
     }
     private void menudrawlayout() {
@@ -106,22 +112,30 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             // Fling left
             Toast.makeText(this, "向左手势"+changanim, Toast.LENGTH_SHORT).show();
-            imgleftxianright(changanim);
-            animtextleft(changanim);
-            changanim -=1;
-            if (changanim == -1)
-                changanim = 2;
-            changpager(changanim);
+            if (upchang){
+
+            }else {
+                imgleftxianright(changanim);
+                animtextleft(changanim);
+                changanim -=1;
+                if (changanim == -1)
+                    changanim = 2;
+                changpager(changanim);
+            }
         } else if (e2.getX()-e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             // Fling right
             Toast.makeText(this, "向右手势"+changanim, Toast.LENGTH_SHORT).show();
-            imgrightxianleft(changanim);
-            animtextright(changanim);
-            changanim +=1;
-            if (changanim == 3)
-                changanim = 0;
-            changpager(changanim);
+            if (upchang){
+
+            }else {
+                imgrightxianleft(changanim);
+                animtextright(changanim);
+                changanim +=1;
+                if (changanim == 3)
+                    changanim = 0;
+                changpager(changanim);
+            }
         }
         return false;
     }
@@ -142,28 +156,67 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
         pager.setCurrentItem(i);
         huadongchangpager = true;
     }
-    private void upanim() {
+    public void upanim() {
         getzuobiao();
         int changy = caidanframbottom - caidanframtop;
         AnimatorSet anim = new AnimatorSet();
         ObjectAnimator oaimgy = ObjectAnimator.ofFloat(imgfram,"Y",0,-changy);
         ObjectAnimator oaalphay = ObjectAnimator.ofFloat(imgfram,"alpha",1f,0f);
         ObjectAnimator oatexty = ObjectAnimator.ofFloat(textfram,"Y",0,-changy);
-        ObjectAnimator oaxiany = ObjectAnimator.ofFloat(xianfram,"Y",0,-changy);
+        ObjectAnimator oaitem1y = ObjectAnimator.ofFloat(item1,"Y",item1top,-item0top);
+        ObjectAnimator oaxiany = ObjectAnimator.ofFloat(xianfram,"Y",0,-(changy+(item1top - item0top)));
         ObjectAnimator oabjy = ObjectAnimator.ofFloat(bj,"Y",0,-(bjbottom - pagertop));
         ObjectAnimator oapagey = ObjectAnimator.ofFloat(pager,"Y",pagertop,-changy);
         anim.setDuration(1000);
-        anim.playTogether(oaimgy, oaalphay, oatexty, oaxiany, oabjy);
+        anim.playTogether(oaimgy, oaalphay, oatexty, oaxiany, oabjy,oaitem1y);
         anim.start();
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                upchang = true;
                 bj.setBackgroundColor(Color.BLUE);
+//                twoFragment.changlist();
+//                Intent intent = new Intent();
+//                intent.setAction("com.wbq");
+//                sendBroadcast(intent);
+                super.onAnimationEnd(animation);
+            }
+        });
+    }
+    public void downanim() {
+        getzuobiao();
+        int changy = caidanframbottom - caidanframtop;
+        AnimatorSet anim = new AnimatorSet();
+        ObjectAnimator oaimgy = ObjectAnimator.ofFloat(imgfram,"Y",-changy,0);
+        ObjectAnimator oaalphay = ObjectAnimator.ofFloat(imgfram,"alpha",0f,1f);
+        ObjectAnimator oatexty = ObjectAnimator.ofFloat(textfram,"Y",-changy,0);
+        ObjectAnimator oaitem1y = ObjectAnimator.ofFloat(item1,"Y",item0top,item1top);
+        ObjectAnimator oaxiany = ObjectAnimator.ofFloat(xianfram,"Y",-(changy+(item1top - item0top)),0);
+        ObjectAnimator oabjy = ObjectAnimator.ofFloat(bj,"Y",-(bjbottom - pagertop),0);
+        ObjectAnimator oapagey = ObjectAnimator.ofFloat(pager,"Y",pagertop,-changy);
+        anim.setDuration(1000);
+        anim.playTogether(oaimgy, oaalphay, oatexty, oaxiany, oabjy,oaitem1y);
+        anim.start();
+        anim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                upchang = false;
+                bj.setBackground(getResources().getDrawable(R.drawable.ic_head_bg1));
+//                twoFragment.changlist();
+//                Intent intent = new Intent();
+//                intent.setAction("com.wbq.down");
+//                sendBroadcast(intent);
                 super.onAnimationEnd(animation);
             }
         });
     }
 
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+        }
+    };
     private void getzuobiao(){
         caidanframtop = caidanfram.getTop();
         caidanframbottom = caidanfram.getBottom();
@@ -180,11 +233,15 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
         item1left = item1.getLeft();
         item2left = item2.getLeft();
         henxianleft = henxian.getLeft();
+        henxian_1left = henxian_1.getLeft();
+        henxian1left = henxian1.getLeft();
         imganimleft = imganim.getLeft();
         item0right = item0.getRight();
         item1right = item1.getRight();
         item2right = item2.getRight();
         henxianright = henxian.getRight();
+        henxian_1right = henxian_1.getRight();
+        henxian1right = henxian1.getRight();
         imganimright = imganim.getRight();
         imganimtop = imganim.getTop();
         item0top = item0.getTop();
@@ -523,6 +580,8 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
         mGestureDetector = new GestureDetector(this);
         imganim = (ImageView) findViewById(R.id.imganim);
         henxian = (TextView) findViewById(R.id.henxian);
+        henxian_1 = (TextView) findViewById(R.id.henxian_1);
+        henxian1 = (TextView) findViewById(R.id.henxian1);
 
         donghua1 = (LinearLayout) findViewById(R.id.donghua1);
         textanim = (LinearLayout) findViewById(R.id.textanim);
@@ -562,50 +621,105 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
 
             @Override
             public void onPageSelected(int position) {
-                if (huadongchangpager){
-                    Toast.makeText(FrameLayoutActivity.this, "position" + position, Toast.LENGTH_SHORT).show();
+                if (upchang){
                     getzuobiao();
                     switch (position){
-                        case 2:
-                            imgleftxianright(1);
-                            animtextleft(1);
-                            changanim -=1;
-                            break;
                         case 0:
-                            imgrightxianleft(1);
-                            animtextright(1);
-                            changanim +=1;
+                            uphenxian1_0();
                             break;
                         case 1:
                             int i = changpager - position;
                             switch (i){
-                                case 0:
-                                    break;
                                 case 1:
-                                    imgrightxianleft(changanim);
-                                    animtextright(changanim);
-                                    changanim +=1;
-                                    if (changanim == 3)
-                                        changanim = 0;
+                                    uphenxian2_1();
                                     break;
                                 case -1:
-                                    imgleftxianright(changanim);
-                                    animtextleft(changanim);
-                                    changanim -=1;
-                                    if (changanim == -1)
-                                        changanim = 2;
+                                    uphenxian0_1();
                                     break;
                             }
                             break;
+                        case 2:
+                            uphenxian1_2();
+                            break;
                     }
                     changpager = position;
+                }else {
+                    if (huadongchangpager){
+                        Toast.makeText(FrameLayoutActivity.this, "position" + position, Toast.LENGTH_SHORT).show();
+                        getzuobiao();
+                        switch (position){
+                            case 2:
+                                imgleftxianright(1);
+                                animtextleft(1);
+                                changanim -=1;
+                                break;
+                            case 0:
+                                imgrightxianleft(1);
+                                animtextright(1);
+                                changanim +=1;
+                                break;
+                            case 1:
+                                int i = changpager - position;
+                                switch (i){
+                                    case 0:
+                                        break;
+                                    case 1:
+                                        imgrightxianleft(changanim);
+                                        animtextright(changanim);
+                                        changanim +=1;
+                                        if (changanim == 3)
+                                            changanim = 0;
+                                        break;
+                                    case -1:
+                                        imgleftxianright(changanim);
+                                        animtextleft(changanim);
+                                        changanim -=1;
+                                        if (changanim == -1)
+                                            changanim = 2;
+                                        break;
+                                }
+                                break;
+                        }
+                        changpager = position;
+                    }
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
         });
+    }
+
+    private void uphenxian0_1() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(henxian,"X",henxian_1left,henxianleft);
+        animatorSet.play(objectAnimator);
+        animatorSet.setDuration(300);
+        animatorSet.start();
+    }
+
+    private void uphenxian2_1() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(henxian,"X",henxian1left,henxianleft);
+        animatorSet.play(objectAnimator);
+        animatorSet.setDuration(300);
+        animatorSet.start();
+    }
+
+    private void uphenxian1_2() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(henxian,"X",henxianleft,henxian1left);
+        animatorSet.play(objectAnimator);
+        animatorSet.setDuration(300);
+        animatorSet.start();
+    }
+
+    private void uphenxian1_0() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(henxian,"X",henxianleft,henxian_1left);
+        animatorSet.play(objectAnimator);
+        animatorSet.setDuration(300);
+        animatorSet.start();
     }
 }

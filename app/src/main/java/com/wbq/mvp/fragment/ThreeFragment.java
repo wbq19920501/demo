@@ -108,7 +108,7 @@ public class ThreeFragment extends Fragment implements AbsListView.OnScrollListe
 //        HuanBaoActivty huanbao = (HuanBaoActivty) getActivity();
 //        huanbao.upanim();
         threelist.setOnScrollListener(this);
-//        rigestBroadcast();
+        rigestBroadcast();
     }
     @Override
     public void onDestroy() {
@@ -145,20 +145,20 @@ public class ThreeFragment extends Fragment implements AbsListView.OnScrollListe
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         // 当开始滑动且ListView底部的Y轴点超出屏幕最大范围时，显示或隐藏顶部按钮
         if (firstVisibleItem > lastVisibleItemPosition) {// 上滑
-            if (upglide){
-                upi = true;
-                upglide = false;
-                FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
-                huanbao.upanim();
-            }
+//            if (upglide){
+//                upi = true;
+//                upglide = false;
+//                FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
+//                huanbao.upanim();
+//            }
         } else if (firstVisibleItem < lastVisibleItemPosition) {// 下滑
             lastVisibleItemPosition = firstVisibleItem;
         } else if (firstVisibleItem == 0){
-            if (upi){
-                upglide = true;
-                FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
-                huanbao.downanim();
-            }
+//            if (upi){
+//                upglide = true;
+//                FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
+//                huanbao.downanim();
+//            }
         }
     }
 }

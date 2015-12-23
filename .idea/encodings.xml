@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/HuanBaoActivty.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/MenuLeft.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/MyProgressBarActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/bean/ScreenUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/fragment/OneFragment.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/fragment/ThreeFragment.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/fragment/TwoFragment.java" charset="UTF-8" />

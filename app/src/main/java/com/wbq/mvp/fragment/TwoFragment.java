@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -25,6 +26,7 @@ import com.wbq.mvp.FrameLayoutActivity;
 import com.wbq.mvp.HuanBaoActivty;
 import com.wbq.mvp.R;
 import com.wbq.mvp.adapter.TwoAdapter;
+import com.wbq.mvp.bean.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +48,7 @@ public class TwoFragment extends Fragment implements AbsListView.OnScrollListene
     TextView pagerhead;
     private boolean hidehead = false;
     private boolean upglide = true;
-    private boolean upi = false;
-    private boolean downi = false;
+    private boolean animend = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.two, container, false);//关联布局文件
@@ -123,7 +124,7 @@ public class TwoFragment extends Fragment implements AbsListView.OnScrollListene
 
     @Override
     public void onDestroy() {
-        getActivity().unregisterReceiver(receiver);
+//        getActivity().unregisterReceiver(receiver);
         super.onDestroy();
     }
 
@@ -134,12 +135,6 @@ public class TwoFragment extends Fragment implements AbsListView.OnScrollListene
             if ("com.wbq".equals(action)){
                 pagerhead.setVisibility(View.GONE);
                 hidehead = true;
-//                AnimatorSet anim = new AnimatorSet();
-//                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(fragment_two, "Y", pagerhead.getTop(), -(pagerhead.getBottom()-pagerhead.getTop()));
-//                ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(pagerhead, "alpha", 1f, 0f);
-//                anim.setDuration(300);
-//                anim.playTogether(objectAnimator,objectAnimator2);
-//                anim.start();
             } else if ("com.wbq.down".equals(action)){
                 pagerhead.setVisibility(View.VISIBLE);
                 hidehead = false;
@@ -147,8 +142,6 @@ public class TwoFragment extends Fragment implements AbsListView.OnScrollListene
         }
     };
     public void changlist(){
-        this.pagerhead.setVisibility(View.GONE);
-//        Toast.makeText(getContext(),"yyyy",Toast.LENGTH_SHORT).show();
 //        AnimatorSet anim = new AnimatorSet();
 //        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(pagerhead, "Y", 0, -50);
 //        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(pagerhead, "alpha", 1f, 0f);
@@ -159,53 +152,56 @@ public class TwoFragment extends Fragment implements AbsListView.OnScrollListene
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+        switch (scrollState) {
+            // 当不滚动时
+            case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:// 是当屏幕停止滚动时
+                scrollFlag = false;
+                // 判断滚动到顶部
+                if (twolist.getFirstVisiblePosition() == 0) {
+                    if (!upglide){
+                        pagerhead.setVisibility(View.VISIBLE);
+                        hidehead = false;
+                        FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
+                        huanbao.downanim();
+                        upglide = true;
+                    }
+                }
+                // 判断滚动到底部
+                if (twolist.getLastVisiblePosition() == (twolist
+                        .getCount() - 1)) {
+                }
+                break;
+            case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:// 滚动时
+                scrollFlag = true;
+                break;
+            case AbsListView.OnScrollListener.SCROLL_STATE_FLING:// 是当用户由于之前划动屏幕并抬起手指，屏幕产生惯性滑动时
+                scrollFlag = false;
+                break;
+        }
     }
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        // 当开始滑动且ListView底部的Y轴点超出屏幕最大范围时，显示或隐藏顶部按钮
-        int pagerheadchange = pagerhead.getBottom()-pagerhead.getTop();
-        if (firstVisibleItem > lastVisibleItemPosition) {// 上滑
+        if (!scrollFlag) {
+            if (firstVisibleItem > lastVisibleItemPosition) {// 上滑
                 if (upglide){
+                    upglide = false;
                     pagerhead.setVisibility(View.GONE);
                     hidehead = true;
-                    upi = true;
-                    upglide = false;
-                    upanim(pagerheadchange);
                     FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
                     huanbao.upanim();
                 }
             } else if (firstVisibleItem < lastVisibleItemPosition) {// 下滑
-                lastVisibleItemPosition = firstVisibleItem;
+
             } else if (firstVisibleItem == 0){
-                if (upi){
+                if (!upglide){
                     pagerhead.setVisibility(View.VISIBLE);
                     hidehead = false;
-                    upi = false;
-                    upglide = true;
-                    downanim(pagerheadchange);
                     FrameLayoutActivity huanbao = (FrameLayoutActivity) getActivity();
                     huanbao.downanim();
+                    upglide = true;
                 }
             }
-    }
-
-    private void downanim(int i) {
-        AnimatorSet anim = new AnimatorSet();
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(pagerhead, "Y", -i, 0);
-        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(pagerhead, "alpha", 0f, 1f);
-        anim.setDuration(300);
-        anim.playTogether(objectAnimator, objectAnimator2);
-        anim.start();
-    }
-
-    private void upanim(int i) {
-        AnimatorSet anim = new AnimatorSet();
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(pagerhead, "Y", 0, -i);
-        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(pagerhead, "alpha", 1f, 0f);
-        anim.setDuration(300);
-        anim.playTogether(objectAnimator, objectAnimator2);
-        anim.start();
+        }
     }
 }

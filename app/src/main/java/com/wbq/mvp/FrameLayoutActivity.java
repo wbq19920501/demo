@@ -69,6 +69,7 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
     private static final int FLING_MIN_VELOCITY = 0;
     GestureDetector mGestureDetector;
     private boolean upchang = false;//向上改变
+    private boolean animend = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,29 +113,33 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             // Fling left
             Toast.makeText(this, "向左手势"+changanim, Toast.LENGTH_SHORT).show();
-            if (upchang){
+            if (animend){
+                if (upchang){
 
-            }else {
-                imgleftxianright(changanim);
-                animtextleft(changanim);
-                changanim -=1;
-                if (changanim == -1)
-                    changanim = 2;
-                changpager(changanim);
+                }else {
+                    imgleftxianright(changanim);
+                    animtextleft(changanim);
+                    changanim -=1;
+                    if (changanim == -1)
+                        changanim = 2;
+                    changpager(changanim);
+                }
             }
         } else if (e2.getX()-e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             // Fling right
             Toast.makeText(this, "向右手势"+changanim, Toast.LENGTH_SHORT).show();
-            if (upchang){
+            if (animend){
+                if (upchang){
 
-            }else {
-                imgrightxianleft(changanim);
-                animtextright(changanim);
-                changanim +=1;
-                if (changanim == 3)
-                    changanim = 0;
-                changpager(changanim);
+                }else {
+                    imgrightxianleft(changanim);
+                    animtextright(changanim);
+                    changanim +=1;
+                    if (changanim == 3)
+                        changanim = 0;
+                    changpager(changanim);
+                }
             }
         }
         return false;
@@ -157,6 +162,7 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
         huadongchangpager = true;
     }
     public void upanim() {
+        animend = false;
         getzuobiao();
         int changy = caidanframbottom - caidanframtop;
         AnimatorSet anim = new AnimatorSet();
@@ -176,14 +182,16 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
                 upchang = true;
                 bj.setBackgroundColor(Color.BLUE);
 //                twoFragment.changlist();
-//                Intent intent = new Intent();
-//                intent.setAction("com.wbq");
-//                sendBroadcast(intent);
+                Intent intent = new Intent();
+                intent.setAction("com.wbq");
+                sendBroadcast(intent);
+                animend = true;
                 super.onAnimationEnd(animation);
             }
         });
     }
     public void downanim() {
+        animend = false;
         getzuobiao();
         int changy = caidanframbottom - caidanframtop;
         AnimatorSet anim = new AnimatorSet();
@@ -203,9 +211,10 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
                 upchang = false;
                 bj.setBackground(getResources().getDrawable(R.drawable.ic_head_bg1));
 //                twoFragment.changlist();
-//                Intent intent = new Intent();
-//                intent.setAction("com.wbq.down");
-//                sendBroadcast(intent);
+                Intent intent = new Intent();
+                intent.setAction("com.wbq.down");
+                sendBroadcast(intent);
+                animend = true;
                 super.onAnimationEnd(animation);
             }
         });

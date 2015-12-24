@@ -1,5 +1,7 @@
 package com.wbq.mvp.view;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,9 +21,37 @@ public class MyShapeView extends View{
     private Paint yPaint;//椭圆画笔
     private Paint tPaint;//字体画笔
     private int width, height;
-    String msg0 = "日常办公";
-    String msg1 = "业务系统";
-    String msg2 = "个人应用";
+    public String msg0;
+    public String msg1;
+    public String msg2;
+    private int msglwidth,msglheight;
+    private int msgbwidth,msgbheight;
+    private int msgrwidth,msgrheight;
+
+    public String getMsg0() {
+        return msg0;
+    }
+
+    public void setMsg0(String msg0) {
+        this.msg0 = msg0;
+    }
+
+    public String getMsg1() {
+        return msg1;
+    }
+
+    public void setMsg1(String msg1) {
+        this.msg1 = msg1;
+    }
+
+    public String getMsg2() {
+        return msg2;
+    }
+
+    public void setMsg2(String msg2) {
+        this.msg2 = msg2;
+    }
+
     private ShapeViewListener onShapListener;
     //回调，进行各个部分的事件监听
     public interface ShapeViewListener {
@@ -54,9 +84,12 @@ public class MyShapeView extends View{
         initPaint();
         RectF oval = new RectF(50, 20, width - 50, height - 20);
         canvas.drawArc(oval, 0, 180, true, yPaint);
-        canvas.drawText(msg0, 60, height / 2+10, tPaint);
-        canvas.drawText(msg1,width/2,height - 10,tPaint);
-        canvas.drawText(msg2,width - 60,height/2+10,tPaint);
+        canvas.drawText(msg0, 60, height / 2 + 10, tPaint);
+        tPaint.setColor(Color.BLUE);
+        canvas.drawText(msg1, width / 2, height - 10, tPaint);
+        tPaint.setColor(Color.BLACK);
+        canvas.drawText(msg2, width - 60, height / 2 + 10, tPaint);
+        tPaint.setColor(Color.RED);
     }
 
     @Override
@@ -69,8 +102,10 @@ public class MyShapeView extends View{
                 int y = Integer.valueOf((int) y1);
                 if (x>=0 && x<=60 || y>=(height/2+10) && y<=(height/2-10)){
                     onShapListener.onLeftListener();
+                    invalidate();
                 }else if (x>=(width/2+width/4) && x<=width || y>=(height/2+10) && y<=(height/2-10)){
                     onShapListener.onRightListener();
+                    invalidate();
                 }else if ((width/4)<= x && x <=(width/2+width/4) || height/2<=y && y<= height){
                     onShapListener.onBottomListener();
                 }

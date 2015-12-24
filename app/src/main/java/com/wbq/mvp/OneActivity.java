@@ -172,5 +172,13 @@ public class OneActivity extends Activity{
                 startActivity(intent);
             }
         });
+        Button ceshichange = (Button) findViewById(R.id.ceshichange);
+        ceshichange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OneActivity.this,CeShiChangeActvity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

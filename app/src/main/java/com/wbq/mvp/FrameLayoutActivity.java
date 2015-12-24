@@ -588,6 +588,7 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
     private void init() {
         mGestureDetector = new GestureDetector(this);
         imganim = (ImageView) findViewById(R.id.imganim);
+        imganim.setImageDrawable(getResources().getDrawable(R.drawable.text_0));
         henxian = (TextView) findViewById(R.id.henxian);
         henxian_1 = (TextView) findViewById(R.id.henxian_1);
         henxian1 = (TextView) findViewById(R.id.henxian1);

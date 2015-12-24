@@ -73,5 +73,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="我的自定义"/>
+        <Button
+            android:id="@+id/ceshichange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试运动"/>
     </LinearLayout>
 </ScrollView>

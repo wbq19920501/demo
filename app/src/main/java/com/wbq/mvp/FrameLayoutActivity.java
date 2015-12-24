@@ -31,6 +31,8 @@ import com.wbq.mvp.fragment.TwoFragment;
 
 import java.util.ArrayList;
 
+import static android.support.v4.widget.DrawerLayout.*;
+
 /**
  * Created by wbq501 on 2015-12-22 14:55.
  * demo
@@ -90,6 +92,7 @@ public class FrameLayoutActivity extends FragmentActivity implements View.OnTouc
     }
     private void menudrawlayout() {
         final DrawerLayout drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        drawerlayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED);
         TextView leftmenubtn = (TextView) findViewById(R.id.leftmenubtn);
         TextView rightmenubtn = (TextView) findViewById(R.id.rightmenubtn);
         leftmenubtn.setOnClickListener(new View.OnClickListener() {

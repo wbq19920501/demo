@@ -24,6 +24,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/RotateView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/RoundProgressBar.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/ShapeView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wbq/mvp/view/TwoRoundView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_head_bg1.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/text1.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/text_0.png" charset="UTF-8" />
